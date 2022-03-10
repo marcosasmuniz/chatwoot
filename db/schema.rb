@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_18_120357) do
+ActiveRecord::Schema.define(version: 2022_02_25_013554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -350,7 +350,7 @@ ActiveRecord::Schema.define(version: 2022_02_18_120357) do
     t.datetime "agent_last_seen_at"
     t.jsonb "additional_attributes", default: {}
     t.bigint "contact_inbox_id"
-    t.uuid "uuid", default: -> { "public.gen_random_uuid()" }, null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.string "identifier"
     t.datetime "last_activity_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.bigint "team_id"
@@ -775,6 +775,18 @@ ActiveRecord::Schema.define(version: 2022_02_18_120357) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_working_hours_on_account_id"
     t.index ["inbox_id"], name: "index_working_hours_on_inbox_id"
+  end
+
+  create_table "wpp_connects", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "status", default: "active", null: false
+    t.jsonb "status_sync", default: {}, null: false
+    t.string "wppconnect_session", null: false
+    t.string "wppconnect_token", null: false
+    t.string "wppconnect_endpoint", null: false
+    t.integer "channel_api_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "account_users", "accounts", on_delete: :cascade

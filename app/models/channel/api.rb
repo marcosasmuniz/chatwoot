@@ -19,6 +19,8 @@
 
 class Channel::Api < ApplicationRecord
   include Channelable
+  has_one :inbox, as: :channel, dependent: :destroy_async
+  has_one :wpp_connect, foreign_key: 'channel_api_id' 
 
   self.table_name = 'channel_api'
   EDITABLE_ATTRS = [:webhook_url].freeze

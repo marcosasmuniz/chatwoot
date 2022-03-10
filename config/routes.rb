@@ -166,6 +166,9 @@ Rails.application.routes.draw do
 
       namespace :integrations do
         resources :webhooks, only: [:create]
+        resources :wpp_connects, only: [] do
+          post :webhook
+        end
       end
 
       resource :profile, only: [:show, :update] do
@@ -308,7 +311,7 @@ Rails.application.routes.draw do
       resources :installation_configs, only: [:index, :new, :create, :show, :edit, :update]
       resources :agent_bots, only: [:index, :new, :create, :show, :edit, :update]
       resources :platform_apps, only: [:index, :new, :create, :show, :edit, :update]
-
+      resources :wpp_connects
       # resources that doesn't appear in primary navigation in super admin
       resources :account_users, only: [:new, :create, :destroy]
     end

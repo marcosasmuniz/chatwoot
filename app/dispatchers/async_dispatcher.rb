@@ -17,7 +17,8 @@ class AsyncDispatcher < BaseDispatcher
       InstallationWebhookListener.instance,
       NotificationListener.instance,
       WebhookListener.instance,
-      AutomationRuleListener.instance
+      AutomationRuleListener.instance,
+      WppConnectsListener.instance
     ]
   end
 end
