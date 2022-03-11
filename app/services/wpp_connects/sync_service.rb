@@ -20,7 +20,7 @@ class WppConnects::SyncService
     if (result == nil)
       @wpp_connect.status_sync = @wpp_connect.status_sync.merge({'wpp': {'status': 'disconnected'}})
     else
-      is_mid = result['refTTL'] != 20000
+      is_mid = result['clientToken'].blank?
       @wpp_connect.status_sync = @wpp_connect.status_sync.merge({'wpp': {'status': 'connected', 'is_md': is_mid}})
     end
     @wpp_connect.save
