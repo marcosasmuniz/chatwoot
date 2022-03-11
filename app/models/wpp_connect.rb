@@ -15,4 +15,10 @@
 #
 class WppConnect < ApplicationRecord
   belongs_to :channel_api, class_name: 'Channel::Api'
+
+  after_create_commit :sync
+
+  def sync
+    Integrations::WppConnects::SyncMessagesJob.perform_later(self.id)
+  end
 end

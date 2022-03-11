@@ -5,9 +5,27 @@ class WppConnects::SyncService
   end
 
   def call()
+    refresh_connection()
     chats = get_chats()
     sync_chats(chats)
     true
+  end
+
+  def refresh_connection()
+    response = HTTParty.get(
+      "#{@wpp_connect.wppconnect_endpoint}/api/#{@wpp_connect.wppconnect_session}/host-device",
+      headers: { 'Authorization' => "Bearer #{@wpp_connect.wppconnect_token}", 'Content-Type' => 'application/json' }
+    )
+    result = response.parsed_response['response'] rescue nil
+    if (result == nil)
+      @wpp_connect.status_sync = @wpp_connect.status_sync.merge({'wpp': {'status': 'disconnected'}})
+    else
+      is_mid = result['refTTL'] != 20000
+      @wpp_connect.status_sync = @wpp_connect.status_sync.merge({'wpp': {'status': 'connected', 'is_md': is_mid}})
+    end
+    @wpp_connect.save
+    
+    raise "WppConnectionComunication" if result == nil
   end
 
   def get_chats()
@@ -29,7 +47,7 @@ class WppConnects::SyncService
   end
 
   def update_sync_status(chat)
-    @wpp_connect.update(status_sync: {'last_sync': {'last_key_time': Time.at(chat['t']), 'current_time': DateTime.now, 'chat': chat}})
+    @wpp_connect.update(status_sync:  @wpp_connect.status_sync.merge({'last_sync': {'last_key_time': Time.at(chat['t']), 'current_time': DateTime.now, 'chat': chat}}))
   end
 
   def sync_contact(chat)
@@ -124,18 +142,16 @@ class WppConnects::SyncService
   end
 
   def get_messages_normal_wpp(contact)
-    def get_messages(contact)
-      response = HTTParty.get(
-        "#{@wpp_connect.wppconnect_endpoint}/api/#{@wpp_connect.wppconnect_session}/load-messages-in-chat/#{contact.identifier.split('@')[0]}",
-        headers: { 'Authorization' => "Bearer #{@wpp_connect.wppconnect_token}", 'Content-Type' => 'application/json' },
-        timeout: 10      
-      )
-      
-      if response.parsed_response['status'] == 'success' && response.parsed_response['response'].present?
-        return {ok: response.parsed_response['response']} 
-      else
-        return { error: response.parsed_response}
-      end
+    response = HTTParty.get(
+      "#{@wpp_connect.wppconnect_endpoint}/api/#{@wpp_connect.wppconnect_session}/load-messages-in-chat/#{contact.identifier.split('@')[0]}",
+      headers: { 'Authorization' => "Bearer #{@wpp_connect.wppconnect_token}", 'Content-Type' => 'application/json' },
+      timeout: 10      
+    )
+    
+    if response.parsed_response['status'] == 'success' && response.parsed_response['response'].present?
+      return {ok: response.parsed_response['response']} 
+    else
+      return { error: response.parsed_response}
     end
   end
 
@@ -154,9 +170,8 @@ class WppConnects::SyncService
   end
 
   def get_messages(contact)
-    md_wpp = get_messages_md_wpp(contact)
-    if md_wpp.key?(:ok)
-      return md_wpp
+    if @wpp_connect.status_sync['wpp']['is_md'] == true
+      return get_messages_md_wpp(contact)
     else
       return get_messages_normal_wpp(contact)
     end
