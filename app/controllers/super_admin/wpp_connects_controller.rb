@@ -8,6 +8,50 @@ class SuperAdmin::WppConnectsController < SuperAdmin::ApplicationController
   # end
 
   def create
+    ActiveRecord::Base.transaction do
+      account = Account.first
+      channel = account.api_channels.create()
+      inbox = account.inboxes.build({
+        name: "#{params[:wpp_connect][:name]}",
+        channel: channel
+      })
+      inbox.save!
+      params[:wpp_connect][:channel_api_id] = channel.id
+      super()
+    end
+  end
+
+  def show
+    account = Account.first
+    if params.key?(:pair_qr)
+      @retries_count = params[:retries_count].to_i
+      wpp_connect = WppConnect.find(params[:id])
+      if @retries_count > 20
+        flash[:notice] = 'Error to connect'
+        return super_admin_wpp_connect_path(wpp_connect.id)
+      end
+
+      request_status = HTTParty.get(
+        "#{wpp_connect.wppconnect_endpoint}/api/#{wpp_connect.wppconnect_session}/status-session",
+        headers: { 'Authorization' => "Bearer #{wpp_connect.wppconnect_token}", 'Content-Type' => 'application/json' }
+      )
+      if request_status.parsed_response['status'] == 'CLOSED'
+        request_start = HTTParty.post(
+          "#{wpp_connect.wppconnect_endpoint}/api/#{wpp_connect.wppconnect_session}/start-session",
+          headers: { 'Authorization' => "Bearer #{wpp_connect.wppconnect_token}", 'Content-Type' => 'application/json' },
+          body: {'webhook': "#{ENV['FRONTEND_URL']}/api/v1/integrations/wpp_connects/#{wpp_connect.id}/webhook", 'waitQrCode': true}.to_json
+        )
+        sleep(3)
+        @retries_count += 1 
+        return redirect_to super_admin_wpp_connect_path(wpp_connect.id, pair_qr: true, retries_count: @retries_count)
+      elsif request_status.parsed_response['status'] == 'QRCODE'
+        @qr_code = request_status.parsed_response['qrcode']
+        @retries_count += 1
+      elsif request_status.parsed_response['status'] == 'CONNECTED'
+        flash[:notice] = 'Connected!'
+        return redirect_to super_admin_wpp_connect_path(wpp_connect.id)
+      end
+    end
     super()
   end
 

@@ -17,6 +17,7 @@ class WppConnectDashboard < Administrate::BaseDashboard
     channel_api_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    status_sync: Field::String
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -43,6 +44,7 @@ class WppConnectDashboard < Administrate::BaseDashboard
     channel_api_id
     created_at
     updated_at
+    status_sync
   ].freeze
 
   # FORM_ATTRIBUTES
