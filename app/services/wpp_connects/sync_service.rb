@@ -170,11 +170,12 @@ class WppConnects::SyncService
   end
 
   def get_messages(contact)
-    if @wpp_connect.status_sync['wpp']['is_md'] == true
-      return get_messages_md_wpp(contact)
-    else
-      return get_messages_normal_wpp(contact)
-    end
+    # if @wpp_connect.status_sync['wpp']['is_md'] == true
+    #   return get_messages_md_wpp(contact)
+    # else
+    #   return get_messages_normal_wpp(contact)
+    # end
+    return get_messages_md_wpp(contact)
   end
 
   def sync_chat?(chat)
