@@ -69,7 +69,7 @@ class WppConnects::SyncService
   def sync_messages(contact)
     messages = get_messages(contact)
     if messages.key?(:error)
-      puts("Falha ao sincronizar contato #{contact.inspect} ") 
+      puts("Falha ao sincronizar contato #{contact.phone_number}") 
       return false
     end 
 
@@ -82,7 +82,7 @@ class WppConnects::SyncService
       contact_inbox = ContactInbox.find(contact_inbox_id)
     end
     
-    conversation = Conversation.find_by({identifier: conversation_id})
+    conversation = Conversation.find_by({identifier: conversation_id, inbox_id: @wpp_connect.channel_api.inbox.id, contact_id: contact.id})
     if conversation == nil
       conversation_id = Conversation.insert(
         {
@@ -129,7 +129,7 @@ class WppConnects::SyncService
       end
     end
 
-    puts("Sincronizado contato #{conversation_id} mensagens #{messages[:ok].count}")
+    puts("Sincronizado contato #{contact.phone_number} mensagens #{messages[:ok].count}")
     return true
   end
 
