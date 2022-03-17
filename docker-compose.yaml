@@ -88,11 +88,11 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - postgres:/data/postgres
+      - ./../data/postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=chatwoot
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=password
 
   redis:
     image: redis:alpine
@@ -109,6 +109,12 @@ services:
     ports:
       - 1025:1025
       - 8025:8025
+
+  wppconnect-server:
+    image: douglara/wppconnect-server:1
+    env_file: .env
+    ports:
+      - 21465:21465
 
 volumes:
   postgres:
