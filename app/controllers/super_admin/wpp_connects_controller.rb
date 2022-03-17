@@ -45,10 +45,11 @@ class SuperAdmin::WppConnectsController < SuperAdmin::ApplicationController
         headers: { 'Authorization' => "Bearer #{wpp_connect.wppconnect_token}", 'Content-Type' => 'application/json' }
       )
       if request_status.parsed_response['status'] == 'CLOSED'
+        frontend_url = Rails.env.production? ? ENV['FRONTEND_URL'] : 'http://rails:3000'
         request_start = HTTParty.post(
           "#{wpp_connect.wppconnect_endpoint}/api/#{wpp_connect.wppconnect_session}/start-session",
           headers: { 'Authorization' => "Bearer #{wpp_connect.wppconnect_token}", 'Content-Type' => 'application/json' },
-          body: {'webhook': "#{ENV['FRONTEND_URL']}/api/v1/integrations/wpp_connects/#{wpp_connect.id}/webhook", 'waitQrCode': true}.to_json
+          body: {'webhook': "#{frontend_url}/api/v1/integrations/wpp_connects/#{wpp_connect.id}/webhook", 'waitQrCode': true}.to_json
         )
         sleep(3)
         @retries_count += 1 
