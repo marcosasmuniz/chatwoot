@@ -9,6 +9,15 @@ class SuperAdmin::WppConnectsController < SuperAdmin::ApplicationController
 
   def create
     ActiveRecord::Base.transaction do
+      if params[:wpp_connect][:wppconnect_token].blank?
+        request_token = HTTParty.post(
+          "#{params[:wpp_connect][:wppconnect_endpoint]}/api/#{params[:wpp_connect][:wppconnect_session]}/#{params[:wpp_connect][:wppconnect_secret]}/generate-token",
+          headers: { 'Content-Type' => 'application/json' }
+        )
+        puts(request_token.parsed_response)
+        params[:wpp_connect][:wppconnect_token] = request_token.parsed_response['token']
+      end
+
       account = Account.first
       channel = account.api_channels.create()
       inbox = account.inboxes.build({

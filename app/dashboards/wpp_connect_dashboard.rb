@@ -14,6 +14,7 @@ class WppConnectDashboard < Administrate::BaseDashboard
     wppconnect_session: Field::String,
     wppconnect_token: Field::String,
     wppconnect_endpoint: Field::String,
+    wppconnect_secret: Field::String,
     channel_api_id: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -57,6 +58,7 @@ class WppConnectDashboard < Administrate::BaseDashboard
     wppconnect_token
     wppconnect_endpoint
     channel_api_id
+    wppconnect_secret
   ].freeze
 
   # COLLECTION_FILTERS

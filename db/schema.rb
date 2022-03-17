@@ -781,6 +781,8 @@ ActiveRecord::Schema.define(version: 2022_02_25_013554) do
     t.string "name", default: "", null: false
     t.string "status", default: "active", null: false
     t.jsonb "status_sync", default: {}, null: false
+    t.string "status_connection", default: "disconnected", null: false
+    t.string "wppconnect_secret", null: false
     t.string "wppconnect_session", null: false
     t.string "wppconnect_token", null: false
     t.string "wppconnect_endpoint", null: false
