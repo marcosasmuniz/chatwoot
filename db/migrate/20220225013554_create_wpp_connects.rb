@@ -4,8 +4,6 @@ class CreateWppConnects < ActiveRecord::Migration[6.1]
       t.string :name, null: false, default: ""
       t.string :status, null: false, default: "active"
       t.jsonb :status_sync, null: false, default: {}
-      t.string :status_connection, null: false, default: "disconnected"
-      t.string :wppconnect_secret, null: false
       t.string :wppconnect_session, null: false
       t.string :wppconnect_token, null: false
       t.string :wppconnect_endpoint, null: false

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_25_013554) do
+ActiveRecord::Schema.define(version: 2022_03_20_053948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -781,14 +781,14 @@ ActiveRecord::Schema.define(version: 2022_02_25_013554) do
     t.string "name", default: "", null: false
     t.string "status", default: "active", null: false
     t.jsonb "status_sync", default: {}, null: false
-    t.string "status_connection", default: "disconnected", null: false
-    t.string "wppconnect_secret", null: false
     t.string "wppconnect_session", null: false
     t.string "wppconnect_token", null: false
     t.string "wppconnect_endpoint", null: false
     t.integer "channel_api_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status_connection", default: "disconnected", null: false
+    t.string "wppconnect_secret", default: "", null: false
   end
 
   add_foreign_key "account_users", "accounts", on_delete: :cascade
