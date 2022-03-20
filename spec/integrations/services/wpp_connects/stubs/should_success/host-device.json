@@ -1,0 +1,14 @@
+{
+    "status": "success",
+    "response": {
+        "id": "1",
+        "ref": "2@Eo5PrDq9972dSwQT5jn0U+F5mGBug9KqnzZVdLFtVEP1P+yAcLe2VnUQHigqQG3YhdnMmDtotazxUg==",
+        "refTTL": 60000,
+        "platform": "android",
+        "pushname": "Teste Phone",
+        "blockStoreAdds": false,
+        "isVoipInitialized": false,
+        "phoneNumber": "9999999999993@c.us"
+    },
+    "mapper": "device"
+}

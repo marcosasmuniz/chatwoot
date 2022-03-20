@@ -1,0 +1,165 @@
+{
+  "status": "success",
+  "response": [
+      {
+          "id": {
+              "server": "c.us",
+              "user": "9999999999991",
+              "_serialized": "9999999999991@c.us"
+          },
+          "lastReceivedKey": {
+              "fromMe": false,
+              "remote": {
+                  "server": "c.us",
+                  "user": "9999999999991",
+                  "_serialized": "9999999999991@c.us"
+              },
+              "id": "B28C970BEB36F6149ED081D07B4999B5",
+              "_serialized": "false_9999999999991@c.us_B28C970BEB36F6149ED081D07B4999B5"
+          },
+          "t": 1646779311,
+          "unreadCount": 0,
+          "archive": false,
+          "muteExpiration": 0,
+          "notSpam": true,
+          "pin": 1636477678514210,
+          "ephemeralDuration": 0,
+          "disappearingModeInitiator": "chat",
+          "unreadMentionCount": 0,
+          "hasUnreadMention": false,
+          "archiveAtMentionViewedInDrawer": false,
+          "hasChatBeenOpened": false,
+          "tcToken": {},
+          "tcTokenTimestamp": 1646342211,
+          "endOfHistoryTransferType": 0,
+          "pendingInitialLoading": false,
+          "msgs": null,
+          "kind": "chat",
+          "isBroadcast": false,
+          "isGroup": false,
+          "isUser": true,
+          "contact": {
+              "id": {
+                  "server": "c.us",
+                  "user": "9999999999991",
+                  "_serialized": "9999999999991@c.us"
+              },
+              "name": "Contact 1",
+              "shortName": "Contact",
+              "pushname": "Contact 1",
+              "type": "in",
+              "isBusiness": false,
+              "isEnterprise": false,
+              "isContactSyncCompleted": 0,
+              "formattedName": "Contact 1",
+              "isMe": false,
+              "isMyContact": true,
+              "isPSA": false,
+              "isUser": true,
+              "isWAContact": true,
+              "profilePicThumbObj": {
+                  "eurl": "https://pps.whatsapp.net/v/t61.24694-24/248655018_110904427938363_7290471199085096504_n.jpg?ccb=11-4&oh=425cc5b108463430906988026ff2d2d8&oe=622FD23F",
+                  "id": {
+                      "server": "c.us",
+                      "user": "9999999999991",
+                      "_serialized": "9999999999991@c.us"
+                  },
+                  "img": "https://pps.whatsapp.net/v/t61.24694-24/248655018_110904427938363_7290471199085096504_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=9301c52fa63551adeec96a1b0b941544&oe=622FD23F",
+                  "imgFull": "https://pps.whatsapp.net/v/t61.24694-24/248655018_110904427938363_7290471199085096504_n.jpg?ccb=11-4&oh=425cc5b108463430906988026ff2d2d8&oe=622FD23F",
+                  "raw": null,
+                  "tag": "1635097247"
+              },
+              "msgs": null
+          },
+          "groupMetadata": null,
+          "presence": {
+              "id": {
+                  "server": "c.us",
+                  "user": "9999999999991",
+                  "_serialized": "9999999999991@c.us"
+              },
+              "chatstates": []
+          }
+      },
+      {
+          "id": {
+              "server": "c.us",
+              "user": "9999999999992",
+              "_serialized": "9999999999992@c.us"
+          },
+          "lastReceivedKey": {
+              "fromMe": false,
+              "remote": {
+                  "server": "c.us",
+                  "user": "9999999999992",
+                  "_serialized": "9999999999992@c.us"
+              },
+              "id": "3EB0B6130796BAF217AF",
+              "_serialized": "false_9999999999992@c.us_3EB0B6130796BAF217AF"
+          },
+          "t": 1646837728,
+          "unreadCount": 0,
+          "archive": false,
+          "muteExpiration": 0,
+          "notSpam": true,
+          "pin": 1646615545396,
+          "ephemeralDuration": 0,
+          "disappearingModeInitiator": "chat",
+          "unreadMentionCount": 0,
+          "hasUnreadMention": false,
+          "archiveAtMentionViewedInDrawer": false,
+          "hasChatBeenOpened": false,
+          "tcToken": {},
+          "tcTokenTimestamp": 1646405105,
+          "endOfHistoryTransferType": 0,
+          "pendingInitialLoading": false,
+          "msgs": null,
+          "kind": "chat",
+          "isBroadcast": false,
+          "isGroup": false,
+          "isUser": true,
+          "contact": {
+              "id": {
+                  "server": "c.us",
+                  "user": "9999999999992",
+                  "_serialized": "9999999999992@c.us"
+              },
+              "name": "Contact 2",
+              "shortName": "Contact 2",
+              "pushname": "Contact 2",
+              "type": "in",
+              "isBusiness": false,
+              "isEnterprise": false,
+              "isContactSyncCompleted": 0,
+              "formattedName": "Contact 2",
+              "isMe": false,
+              "isMyContact": true,
+              "isPSA": false,
+              "isUser": true,
+              "isWAContact": true,
+              "profilePicThumbObj": {
+                  "eurl": "https://pps.whatsapp.net/v/t61.24694-24/55849187_755303944870845_1655297399653924864_n.jpg?ccb=11-4&oh=01_AVzRgAXb48kdHpexiI3DR06ZP19BT3gcGimoA1f3zHxNFQ&oe=622F49BD",
+                  "id": {
+                      "server": "c.us",
+                      "user": "9999999999992",
+                      "_serialized": "9999999999992@c.us"
+                  },
+                  "img": "https://pps.whatsapp.net/v/t61.24694-24/55849187_755303944870845_1655297399653924864_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AVy6SO0gYMx_tCS9hL0v8qC0oQY7p4tY8D-j3PZd-mMuLA&oe=622F49BD",
+                  "imgFull": "https://pps.whatsapp.net/v/t61.24694-24/55849187_755303944870845_1655297399653924864_n.jpg?ccb=11-4&oh=01_AVzRgAXb48kdHpexiI3DR06ZP19BT3gcGimoA1f3zHxNFQ&oe=622F49BD",
+                  "raw": null,
+                  "tag": "1529367090"
+              },
+              "msgs": null
+          },
+          "groupMetadata": null,
+          "presence": {
+              "id": {
+                  "server": "c.us",
+                  "user": "9999999999992",
+                  "_serialized": "9999999999992@c.us"
+              },
+              "chatstates": []
+          }
+      }
+    ]
+}
