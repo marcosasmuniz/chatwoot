@@ -1,0 +1,45 @@
+{
+  "event":"onack",
+  "session":"teste02",
+  "id":{
+     "fromMe":true,
+     "remote":"559999999991@c.us",
+     "id":"3EB0CD36F19727587A07",
+     "_serialized":"true_559999999991@c.us_3EB0CD36F19727587A07"
+  },
+  "body":"teste4",
+  "type":"chat",
+  "t":1648322950,
+  "notifyName":"My name",
+  "from":"559999999999@c.us",
+  "to":"559999999991@c.us",
+  "self":"in",
+  "ack":2,
+  "isNewMsg":true,
+  "star":false,
+  "recvFresh":true,
+  "isFromTemplate":false,
+  "broadcast":false,
+  "mentionedJidList":[
+     
+  ],
+  "isVcardOverMmsDocument":false,
+  "isForwarded":false,
+  "hasReaction":false,
+  "ephemeralOutOfSync":false,
+  "productHeaderImageRejected":false,
+  "lastPlaybackProgress":0,
+  "isDynamicReplyButtonsMsg":false,
+  "isMdHistoryMsg":false,
+  "requiresDirectConnection":false,
+  "pttForwardedFeaturesEnabled":false,
+  "wpp_connect_id":"2",
+  "wpp_connect":{
+     "id":{
+        "fromMe":true,
+        "remote":"559999999991@c.us",
+        "id":"3EB0CD36F19727587A07",
+        "_serialized":"true_559999999991@c.us_3EB0CD36F19727587A07"
+     }
+  }
+}
