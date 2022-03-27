@@ -21,8 +21,8 @@ Chatwoot is an open-source, self-hosted customer engagement suite. Chatwoot lets
 | Send and receive **text**            | ✔   |
 | Send and receive **audio, image, video and docs** | ✖   |
 | Group conversations                  | ✖   |
-| Sync historic messages (Whatsapp Beta issue) | ✔   |
-| Sync real time                       | ✖  |
+| Sync historic messages (Whatsapp Beta issue) | ✔  |
+| Sync real time                       | ✔   |
 | Open/close conversations and messages callbacks    | ✖  |
 
 ## Development environment Docker setup

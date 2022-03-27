@@ -180,3 +180,7 @@ Click in connect and wait to pair QR Code
 Open chatwoot frontend and wait sync messages
 
 <img src="./pictures/connect.png" width="100%" alt="Chat dashboard"/>
+
+Active websocket support and https to chatwoot web app
+
+<img src="./pictures/https.png" width="100%" alt="Chat dashboard"/>
