@@ -112,3 +112,7 @@ Open chatwoot frontend http://localhost:3000 and wait sync messages
 ```sh
 docker-compose down
 ```
+
+## Deploy production
+
+[Digital Ocean + CapRover + Cloudflare](.github/deploy_production_digitalocean/README.md)
