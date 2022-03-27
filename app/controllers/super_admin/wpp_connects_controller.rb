@@ -59,8 +59,12 @@ class SuperAdmin::WppConnectsController < SuperAdmin::ApplicationController
         @retries_count += 1
       elsif request_status.parsed_response['status'] == 'CONNECTED'
         flash[:notice] = 'Connected!'
+        wpp_connect.sync()
         return redirect_to super_admin_wpp_connect_path(wpp_connect.id)
       end
+    elsif params.key?(:sync)
+      wpp_connect = WppConnect.find(params[:id])
+      wpp_connect.sync()
     end
     super()
   end

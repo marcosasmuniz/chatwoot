@@ -30,6 +30,15 @@ as well as a link to its edit page.
     ) %>
   </div>
 
+
+  <div style="padding-right: 15px;">
+    <%= link_to(
+      "Sync",
+      super_admin_wpp_connect_path(page.resource.id, sync: true),
+      class: "button",
+    ) %>
+  </div>
+
   <div>
     <%= link_to(
       t("administrate.actions.edit_resource", name: page.page_title),
