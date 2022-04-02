@@ -14,6 +14,11 @@ Rails.application.routes.draw do
   else
     root to: 'dashboard#index'
 
+    get '/app/wpp_connect/show', to: 'app/wpp_connect#show'
+    get '/app/wpp_connect/new', to: 'app/wpp_connect#new'
+    post '/app/wpp_connect/create', to: 'app/wpp_connect#create'
+    get '/app/wpp_connect/qr_code', to: 'app/wpp_connect#qr_code'
+
     get '/app', to: 'dashboard#index'
     get '/app/*params', to: 'dashboard#index'
     get '/app/accounts/:account_id/settings/inboxes/new/twitter', to: 'dashboard#index', as: 'app_new_twitter_inbox'
@@ -321,6 +326,7 @@ Rails.application.routes.draw do
   end
 
   namespace :installation do
+    get 'new_test', to: 'onboarding#new'
     get 'onboarding', to: 'onboarding#index'
     post 'onboarding', to: 'onboarding#create'
   end

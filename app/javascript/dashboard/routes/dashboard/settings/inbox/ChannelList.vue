@@ -59,11 +59,13 @@ export default {
         },
         { key: 'telegram', name: 'Telegram' },
         { key: 'line', name: 'Line' },
+        { key: 'wppconnect', name: 'Whatsapp + WPP Connect', accountId: this.accountId, token: this.currentUser.access_token },
       ];
     },
     ...mapGetters({
       accountId: 'getCurrentAccountId',
       globalConfig: 'globalConfig/get',
+      currentUser: 'getCurrentUser'
     }),
   },
   mounted() {

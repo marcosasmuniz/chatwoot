@@ -44,6 +44,10 @@
       v-if="channel.key === 'whatsapp'"
       src="~dashboard/assets/images/channels/whatsapp.png"
     />
+    <img
+      v-if="channel.key === 'wppconnect'"
+      src="~dashboard/assets/images/channels/whatsapp.png"
+    />
     <h3 class="channel__title">
       {{ channel.name }}
     </h3>
@@ -85,12 +89,16 @@ export default {
         'sms',
         'telegram',
         'line',
+        'wppconnect'
       ].includes(key);
     },
   },
   methods: {
     onItemClick() {
-      if (this.isActive) {
+      if (this.channel.key === 'wppconnect') {
+        window.location.href = `/app/wpp_connect/new?account_id=${this.channel.accountId}&api_access_token=${this.channel.token}`;
+      }
+      else if (this.isActive) {
         this.$emit('channel-item-click', this.channel.key);
       }
     },

@@ -61,6 +61,9 @@
                 <span v-if="item.channel_type === 'Channel::Api'">
                   {{ globalConfig.apiChannelName || 'API' }}
                 </span>
+                <span v-if="item.channel_type === 'Channel::Api'">
+                  Whatsapp + WPP Connect
+                </span>
               </td>
 
               <!-- Action Buttons -->

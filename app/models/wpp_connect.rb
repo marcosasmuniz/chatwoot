@@ -5,8 +5,10 @@
 #  id                  :bigint           not null, primary key
 #  name                :string           default(""), not null
 #  status              :string           default("active"), not null
+#  status_connection   :string           default("disconnected"), not null
 #  status_sync         :jsonb            not null
 #  wppconnect_endpoint :string           not null
+#  wppconnect_secret   :string           default(""), not null
 #  wppconnect_session  :string           not null
 #  wppconnect_token    :string           not null
 #  created_at          :datetime         not null
