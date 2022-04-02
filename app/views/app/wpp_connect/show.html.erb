@@ -20,7 +20,7 @@
         </div>
         <div class="row align-center">
           <div class="small-12 medium-4 column">
-            <%= form_tag('/app/wpp_connect/create?api_access_token=7BfL27G5hiGHW7W8VmKASYHV&account_id=1', method: :post, class: 'login-box column align-self-top') do %>
+            <%= form_tag('/', method: :post, class: 'login-box column align-self-top') do %>
               <div class="column log-in-form">
                 <% if flash[:error].present? %>
                 <div data-alert class="alert-box warning"><%= flash[:error] %></div>

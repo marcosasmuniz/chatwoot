@@ -44,7 +44,7 @@
         return new Promise((resolve) => setTimeout(resolve, time));
       }
       sleep(5000).then(() => {
-        window.location.replace('<%= "#{app_wpp_connect_qr_code_url(api_access_token: '7BfL27G5hiGHW7W8VmKASYHV', wpp_connect_id: @wpp_connect.id, account_id: params[:account_id], retries_count: @retries_count)}" %>');
+        window.location.replace('<%= "#{app_wpp_connect_qr_code_url(api_access_token: params[:api_access_token], wpp_connect_id: @wpp_connect.id, account_id: params[:account_id], retries_count: @retries_count)}" %>');
       });
     </script>
 </html>
