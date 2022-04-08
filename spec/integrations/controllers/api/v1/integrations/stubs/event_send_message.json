@@ -33,7 +33,7 @@
   "isMdHistoryMsg":false,
   "requiresDirectConnection":false,
   "pttForwardedFeaturesEnabled":false,
-  "wpp_connect_id":"2",
+  "wpp_connect_id":"25",
   "wpp_connect":{
      "id":{
         "fromMe":true,

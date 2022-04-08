@@ -6,6 +6,7 @@ RSpec.describe 'Accounts API', type: :request do
       context 'receive message' do
         let(:wpp_connect) { create(:wpp_connect, id: 25) }
         let(:event) { File.read('spec/integrations/controllers/api/v1/integrations/stubs/event.json') }
+        let(:file_message_event) { File.read('spec/integrations/controllers/api/v1/integrations/stubs/file_message.json') }
         it 'create message' do
           assert_enqueued_with(job: Integrations::WppConnects::EventsJob) do
             post api_v1_integrations_wpp_connect_webhook_path(wpp_connect),
@@ -33,6 +34,19 @@ RSpec.describe 'Accounts API', type: :request do
             expect(response.status).to eq(200)
             expect(Integrations::WppConnects::EventsJob.new.perform(event).content).to eq('hm')
             expect(Message.count).to eq(messages_count)
+          end
+        end
+
+        it 'file message' do
+          assert_enqueued_with(job: Integrations::WppConnects::EventsJob) do
+            post api_v1_integrations_wpp_connect_webhook_path(wpp_connect),
+            params: file_message_event,
+            as: :json
+  
+            expect(response.status).to eq(200)
+            result = Integrations::WppConnects::EventsJob.new.perform(file_message_event)
+            expect(result.content).to eq(nil)
+            expect(result.attachments.count).to eq(1)
           end
         end
       end
