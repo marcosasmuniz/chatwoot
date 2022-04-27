@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: Whatsapp 1
+  status: active
+  wppconnect_session: phone1chatwoot
+  wppconnect_token: $2b$10$el7thHgNihjWEqWyRrMe7.Jl3z9I.3uYyZv2L2yZPO70lUclk0f5i
+  wppconnect_endpoint: http://localhost:21465
+  chatwoot_inbox_id: 2
+  chatwoot_account_id: 1
+  chatwoot_account_token: QQqZeJcr3nvFgNeHXeUEUNEN
+  chatwoot_endpoint: http://localhost:3000
