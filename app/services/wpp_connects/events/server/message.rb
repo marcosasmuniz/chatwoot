@@ -62,13 +62,13 @@ class WppConnects::Events::Server::Message
     if event['fromMe'] == true
       conversation_id = "#{contact.identifier}_#{event['from']}"
     
-      contact_inbox_params = {inbox_id: wpp_connect.channel_api.inbox.id, source_id: conversation_id, contact_id: contact.id}
+      contact_inbox_params = {inbox_id: wpp_connect.channel_api.inbox.id, contact_id: contact.id}
       contact_inbox = ContactInbox.find_by(contact_inbox_params)
       if contact_inbox == nil
         contact_inbox = ContactInbox.create(contact_inbox_params)
       end
       
-      conversation = Conversation.find_by({identifier: conversation_id, inbox_id: wpp_connect.channel_api.inbox.id, contact_id: contact.id})
+      conversation = Conversation.find_by({inbox_id: wpp_connect.channel_api.inbox.id, contact_id: contact.id})
       if conversation == nil
         conversation = Conversation.create({
           account_id: wpp_connect.channel_api.account.id,
@@ -81,13 +81,13 @@ class WppConnects::Events::Server::Message
     else
       conversation_id = "#{contact.identifier}_#{event['to']}"
     
-      contact_inbox_params = {inbox_id: wpp_connect.channel_api.inbox.id, source_id: conversation_id, contact_id: contact.id}
+      contact_inbox_params = {inbox_id: wpp_connect.channel_api.inbox.id, contact_id: contact.id}
       contact_inbox = ContactInbox.find_by(contact_inbox_params)
       if contact_inbox == nil
         contact_inbox = ContactInbox.create(contact_inbox_params)
       end
       
-      conversation = Conversation.find_by({identifier: conversation_id, inbox_id: wpp_connect.channel_api.inbox.id, contact_id: contact.id})
+      conversation = Conversation.find_by({inbox_id: wpp_connect.channel_api.inbox.id, contact_id: contact.id})
       if conversation == nil
         conversation = Conversation.create({
           account_id: wpp_connect.channel_api.account.id,
