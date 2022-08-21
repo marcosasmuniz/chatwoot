@@ -35,6 +35,7 @@ class Account < ApplicationRecord
   validates :auto_resolve_duration, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 999, allow_nil: true }
   validates :name, length: { maximum: 255 }
 
+  has_many :account_billing_subscriptions, dependent: :destroy_async, class_name: '::Enterprise::AccountBillingSubscription' if ChatwootApp.ee?
   has_many :account_users, dependent: :destroy_async
   has_many :agent_bot_inboxes, dependent: :destroy_async
   has_many :agent_bots, dependent: :destroy_async
@@ -125,6 +126,10 @@ class Account < ApplicationRecord
   def notify_creation
     Rails.configuration.dispatcher.dispatch(ACCOUNT_CREATED, Time.zone.now, account: self)
   end
+  
+  def validate_limit_keys
+    # method overridden in enterprise module
+  end
 
   trigger.after(:insert).for_each(:row) do
     "execute format('create sequence IF NOT EXISTS conv_dpid_seq_%s', NEW.id);"
@@ -132,9 +137,5 @@ class Account < ApplicationRecord
 
   trigger.name('camp_dpid_before_insert').after(:insert).for_each(:row) do
     "execute format('create sequence IF NOT EXISTS camp_dpid_seq_%s', NEW.id);"
-  end
-
-  def validate_limit_keys
-    # method overridden in enterprise module
   end
 end

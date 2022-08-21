@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       resources :accounts, only: [:create, :show, :update] do
         member do
           post :update_active_at
+          get :billing_subscription
+          post :start_billing_subscription
         end
 
         scope module: :accounts do
@@ -275,6 +277,7 @@ Rails.application.routes.draw do
   post 'webhooks/sms/:phone_number', to: 'webhooks/sms#process_payload'
   get 'webhooks/instagram', to: 'webhooks/instagram#verify'
   post 'webhooks/instagram', to: 'webhooks/instagram#events'
+  post 'webhooks/stripe', to: 'webhooks/stripe#process_payload'
 
   namespace :twitter do
     resource :callback, only: [:show]

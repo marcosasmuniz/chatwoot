@@ -119,7 +119,7 @@
   },
   "APP_GLOBAL": {
     "TRIAL_MESSAGE": "days trial remaining.",
-    "TRAIL_BUTTON": "Buy Now",
+    "TRAIL_BUTTON": "Choose a Plan",
     "DELETED_USER": "Deleted User"
   },
   "COMPONENTS": {
@@ -157,6 +157,7 @@
     "INTEGRATIONS": "Integrations",
     "PROFILE_SETTINGS": "Profile Settings",
     "ACCOUNT_SETTINGS": "Account Settings",
+    "BILLING": "Billing",
     "APPLICATIONS": "Applications",
     "LABELS": "Labels",
     "CUSTOM_ATTRIBUTES": "Custom Attributes",
@@ -178,7 +179,8 @@
     "REPORTS_LABEL": "Labels",
     "REPORTS_INBOX": "Inbox",
     "REPORTS_TEAM": "Team",
-    "SET_AVAILABILITY_TITLE": "Set yourself as"
+    "SET_AVAILABILITY_TITLE": "Set yourself as",
+    "BETA": "Beta"
   },
   "CREATE_ACCOUNT": {
     "NO_ACCOUNT_WARNING": "Uh oh! We could not find any Chatwoot accounts. Please create a new account to continue.",
@@ -220,6 +222,23 @@
       "WINDOWS_KEY_AND_COMMAND_KEY": "Win / ⌘",
       "ALT_OR_OPTION_KEY": "Alt / ⌥",
       "FORWARD_SLASH_KEY": "/"
+    }
+  },
+  "BILLING_SETTINGS": {
+    "TITLE": "Billing settings",
+    "SUBMIT": "Update settings",
+    "BACK": "Back",
+    "FORM": {
+      "CURRENT_PLAN" : {
+        "TITLE": "Current Plan",
+        "NOTE": "Your current Chatwoot Subscription Plan" ,
+        "PLAN_NOTE": "You are currently under the Chatwoot {plan} Plan"
+      },
+      "CHANGE_PLAN" : {
+        "TITLE": "Change Plan",
+        "NOTE": "Change your current Chatwoot Subscription Plan",
+        "SELECT_PLAN": "Select A Plan"
+      }
     }
   }
 }

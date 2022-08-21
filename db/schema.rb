@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2022_02_18_120357) do
     t.integer "feature_flags", default: 0, null: false
     t.integer "auto_resolve_duration"
     t.jsonb "limits", default: {}
+    t.jsonb "custom_attributes", default: {}
   end
 
   create_table "action_mailbox_inbound_emails", force: :cascade do |t|
@@ -423,6 +424,44 @@ ActiveRecord::Schema.define(version: 2022_02_18_120357) do
     t.index ["account_id"], name: "index_data_imports_on_account_id"
   end
 
+  create_table "ee_account_billing_subscriptions", force: :cascade do |t|
+    t.string "subscription_stripe_id"
+    t.bigint "account_id", null: false
+    t.bigint "billing_product_price_id", null: false
+    t.string "status", default: "true", null: false
+    t.datetime "current_period_end"
+    t.datetime "cancelled_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_ee_account_billing_subscriptions_on_account_id"
+    t.index ["billing_product_price_id"], name: "billing_product_price_index"
+    t.index ["subscription_stripe_id"], name: "subscription_stripe_id_index", unique: true
+  end
+
+  create_table "ee_billing_product_prices", force: :cascade do |t|
+    t.string "price_stripe_id"
+    t.bigint "billing_product_id"
+    t.boolean "active", default: false
+    t.string "stripe_nickname"
+    t.integer "unit_amount"
+    t.integer "features", default: 0, null: false
+    t.jsonb "limits", default: {}, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["billing_product_id"], name: "index_ee_billing_product_prices_on_billing_product_id"
+    t.index ["price_stripe_id"], name: "index_ee_billing_product_prices_on_price_stripe_id", unique: true
+  end
+
+  create_table "ee_billing_products", force: :cascade do |t|
+    t.string "product_stripe_id"
+    t.string "product_name"
+    t.string "product_description"
+    t.boolean "active", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_stripe_id"], name: "index_ee_billing_products_on_product_stripe_id", unique: true
+  end
+
   create_table "email_templates", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", null: false
@@ -432,22 +471,6 @@ ActiveRecord::Schema.define(version: 2022_02_18_120357) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "account_id"], name: "index_email_templates_on_name_and_account_id", unique: true
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.float "value"
-    t.integer "account_id"
-    t.integer "inbox_id"
-    t.integer "user_id"
-    t.integer "conversation_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_id"], name: "index_events_on_account_id"
-    t.index ["created_at"], name: "index_events_on_created_at"
-    t.index ["inbox_id"], name: "index_events_on_inbox_id"
-    t.index ["name"], name: "index_events_on_name"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "inbox_members", id: :serial, force: :cascade do |t|
@@ -662,6 +685,22 @@ ActiveRecord::Schema.define(version: 2022_02_18_120357) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reporting_events", force: :cascade do |t|
+    t.string "name"
+    t.float "value"
+    t.integer "account_id"
+    t.integer "inbox_id"
+    t.integer "user_id"
+    t.integer "conversation_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_reporting_events_on_account_id"
+    t.index ["created_at"], name: "index_reporting_events_on_created_at"
+    t.index ["inbox_id"], name: "index_reporting_events_on_inbox_id"
+    t.index ["name"], name: "index_reporting_events_on_name"
+    t.index ["user_id"], name: "index_reporting_events_on_user_id"
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
